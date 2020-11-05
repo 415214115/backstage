@@ -2,7 +2,7 @@ module.exports = {
 	lintOnSave: false,
 	devServer: {
 		port: 9527,
-		open: true,
+		open: false,
 		overlay: {
 			warnings: false,
 			errors: true

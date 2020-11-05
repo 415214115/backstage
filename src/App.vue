@@ -42,4 +42,7 @@ export default {
 	/* .el-form-item {
 		margin-bottom: 0 !important;
 	} */
+	.el-form-item .el-input{
+		width: 215px;
+	}
 </style>

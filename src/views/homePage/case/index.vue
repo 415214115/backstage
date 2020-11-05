@@ -1,30 +1,29 @@
 <template>
 	<el-card>
 		<div slot="header" class="clearfix">
-		    <span>轮播图管理</span>
-		    <el-button style="float: right; padding: 3px 0" type="text" @click="addBanner">新增轮播图</el-button>
+		    <span>案例封面图管理</span>
 		  </div>
 		<el-table :data="tableData" border style="width: 100%">
+			<el-table-column prop="name" label="案例名称"></el-table-column>
 		    <el-table-column prop="date" label="缩略图">
 				<template slot-scope="scope">
 					<el-image class="bannerImage" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" fit="cover"></el-image>
 				  </template>
 			</el-table-column>
-		    <el-table-column prop="name" label="描述"></el-table-column>
-		    <el-table-column prop="address" label="创建时间"></el-table-column>
+		    <!-- <el-table-column prop="address" label="创建时间"></el-table-column> -->
 			<el-table-column label="操作">
 				<template slot-scope="scope">
-					<el-button type="text" @click="editorBanner">编辑</el-button>
-					<el-button @click="deleteBanner(scope.row)" type="text">删除</el-button>
+					<el-button type="text" @click="editorBanner(scope.row)">编辑</el-button>
+					<!-- <el-button @click="deleteBanner(scope.row)" type="text">删除</el-button> -->
 				  </template>
 			</el-table-column>
 		  </el-table>
 		  <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
 		    <div class="dialogContent">
 				<el-form label-width="80px" :model="dialogForm">
-				  <el-form-item label="图片描述">
+				  <!-- <el-form-item label="图片描述">
 				    <el-input v-model="dialogForm.name"></el-input>
-				  </el-form-item>
+				  </el-form-item> -->
 				  <el-form-item label="上传图片">
 				    <el-upload
 				      class="avatar-uploader"
@@ -50,8 +49,13 @@
 			return{
 				tableData: [
 					{
+						name: '最新案例',
 						date: '1',
-						name: '1',
+						address: '1'
+					},
+					{
+						name: '精彩案例',
+						date: '1',
 						address: '1'
 					}
 				],
@@ -59,19 +63,14 @@
 					name: ''
 				},
 				dialogVisible: false,
-				dialogTitle: '新增轮播图',
+				dialogTitle: '修改封面图',
 				imageUrl: ''
 			}
 		},
 		methods:{
-			addBanner(){
-				// 新增轮播图
-				this.dialogTitle = '新增轮播图'
-				this.dialogVisible = true
-			},
-			editorBanner(){
+			editorBanner(row){
 				// 编辑轮播图
-				this.dialogTitle = '编辑轮播图'
+				this.dialogTitle = row.name
 				this.dialogVisible = true
 			},
 			handleClose(){

@@ -7,12 +7,12 @@ Vue.use(VueRouter)
 
 // import module
 import {home} from './module/home.js' // 首页
-import {userManage} from './module/userManage.js' // 用户管理
-import {workExamine} from './module/workExamine.js' // 工作审批
-import {systemManage} from './module/systemManage.js' // 系统管理
-import {menuManage} from './module/menuManage.js' // 菜单管理
 import {homePage} from './module/homePage.js' // 首页管理
-// import {jurisdictionManage} from './module/jurisdictionManage.js' // 权限管理
+import {caseManage} from './module/case.js' // 案例管理
+import {information} from './module/information.js' // 资讯管理
+import {shop} from './module/shop.js' // 店铺管理
+import {product} from './module/product.js' // 产品管理
+import {guarantee} from './module/guarantee.js' // 质保卡管理
 export const routes = [{
 		path: '/login',
 		name: 'login',
@@ -29,12 +29,12 @@ export const routes = [{
 		redirect: '/index',
 		children: [
 			home,
-			userManage,
-			workExamine,
-			systemManage,
-			menuManage,
 			homePage,
-			// jurisdictionManage
+			caseManage,
+			information,
+			shop,
+			product,
+			guarantee
 		]
 	}
 ]

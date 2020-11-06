@@ -1,30 +1,58 @@
 <template>
 	<el-card>
 		<div slot="header" class="clearfix">
-		    <span>案例详情</span>
+		    <span>质保卡详情</span>
 			<el-button style="float: right; padding: 3px 0" type="text">编辑</el-button>
 		</div>
 		<el-form class="formDatas" label-width="80px" :model="datas">
-		  <el-form-item label="标题">
+		  <el-form-item label="客户姓名">
 		    <el-input v-model="datas"></el-input>
 		  </el-form-item>
-		  <el-form-item label="简介">
+		  <el-form-item label="手机号码">
 		    <el-input v-model="datas"></el-input>
 		  </el-form-item>
-		  <el-form-item label="封面图">
-			  <div class="imagesList">
-				<el-image class="bannerImage imagesListItem" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" fit="cover"></el-image>
-				<el-upload
-				  class="imagesListItem"
-				  action="https://jsonplaceholder.typicode.com/posts/"
-				  :show-file-list="false">
-				  <el-button type="text">修改</el-button>
-				  <!-- <img v-if="imageUrl" :src="imageUrl" class="avatar"> -->
-				  <!-- <i class="el-icon-plus avatar-uploader-icon"></i> -->
-				</el-upload>
-			</div>
+		  <el-form-item label="受保车型">
+		    <el-input v-model="datas"></el-input>
 		  </el-form-item>
-		  <el-form-item label="图片">
+		  <el-form-item label="车牌号码">
+		    <el-input v-model="datas"></el-input>
+		  </el-form-item>
+		  <el-form-item label="施工膜类">
+		    <el-select v-model="value" placeholder="请选择">
+		        <el-option label="a" value="1"></el-option>
+		    	<el-option label="b" value="2"></el-option>
+		      </el-select>
+		  </el-form-item>
+		  <el-form-item label="质保日期">
+		    <el-date-picker
+		          v-model="datas.date"
+		          type="date"
+		          placeholder="选择日期"
+				  format="yyyy 年 MM 月 dd 日"
+				  value-format="yyyy-MM-dd"
+				  >
+		        </el-date-picker>
+		  </el-form-item>
+		  <el-form-item label="交车日期">
+		    <el-date-picker
+		          v-model="datas.date"
+		          type="date"
+		          placeholder="选择日期"
+		    	  format="yyyy 年 MM 月 dd 日"
+		    	  value-format="yyyy-MM-dd"
+		    	  >
+		        </el-date-picker>
+		  </el-form-item>
+		  <el-form-item label="施工店铺">
+		    <el-select v-model="value" placeholder="请选择">
+		        <el-option label="a" value="1"></el-option>
+				<el-option label="b" value="2"></el-option>
+		      </el-select>
+		  </el-form-item>
+		  <el-form-item label="整车价格">
+		    <el-input v-model="datas"></el-input>
+		  </el-form-item>
+		  <el-form-item label="车辆图片">
 		    <div class="imagesList">
 				<div class="imagesListItem">
 					<el-image class="bannerImage " src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" fit="cover"></el-image>
@@ -34,7 +62,6 @@
 				  class="avatar-uploader"
 				  action="https://jsonplaceholder.typicode.com/posts/"
 				  :show-file-list="false">
-				  <!-- <img v-if="imageUrl" :src="imageUrl" class="avatar"> -->
 				  <i class="el-icon-plus avatar-uploader-icon"></i>
 				</el-upload>
 			</div>
@@ -51,7 +78,9 @@
 	export default{
 		data(){
 			return{
-				datas:{}
+				datas:{
+					date: ''
+				}
 			}
 		},
 		methods:{
@@ -94,7 +123,6 @@
 		  display: flex;
 		  justify-content: start;
 		  flex-wrap: wrap;
-		  align-items: center;
 	  }
 	  .imagesListItem{
 		  margin-right: 20px;
@@ -104,12 +132,12 @@
 		  margin-top: 20px;
 	  }
 	  .imgIcon{
-	  		  position: absolute;
-	  		  color: #FFFFFF;
-	  		  background: red;
-	  		  border-radius: 100%;
-	  		  top: -5px;
-	  		  right: -5px;
-	  		  cursor: pointer;
+		  position: absolute;
+		  color: #FFFFFF;
+		  background: red;
+		  border-radius: 100%;
+		  top: -5px;
+		  right: -5px;
+		  cursor: pointer;
 	  }
 </style>

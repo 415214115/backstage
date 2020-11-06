@@ -11,14 +11,12 @@ import {
 // create an axios instance
 export const http = axios.create({
 	// baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-	baseURL: 'http://192.168.0.108:9081/api/management', // url = base url + request url 杨忠心
-	// baseURL: 'http://192.168.0.109:9081/api/management', // url = base url + request url 高鹏贵
-	// baseURL: 'http://192.168.0.113:9081/api/management', // url = base url + request url 张俊杰
+	baseURL: 'https://chenzhouhuang.utools.club', // url = base url + request url 
 	// withCredentials: true,
 	headers: {
 		'X-Requested-With': 'XMLHttpRequest',
 	},
-	timeout: 6000 // 设置超时时间
+	timeout: 60000 // 设置超时时间
 })
 /**
  * 请求拦截器，
@@ -47,8 +45,8 @@ http.interceptors.request.use(config => {
 http.interceptors.response.use(response => {
 	const res = response.data
 	// console.log(response)
-	if(res.code != 200 && response.config.url.indexOf('getVerifyCode') == -1){
-		Message.error(res.message)
+	if(res.code != 'succes'){
+		Message.error(res.msg)
 		return Promise.reject(res)
 		// errorHandle(res.code, res.message)
 	}

@@ -4,6 +4,14 @@
 		    <span>店铺管理</span>
 			<el-button style="float: right; padding: 3px 0" type="text" @click="add">新增店铺</el-button>
 		  </div>
+		  <el-form :inline="true"  class="demo-form-inline">
+		    <el-form-item label="店铺名称">
+		      <el-input  placeholder="店铺名称"></el-input>
+		    </el-form-item>
+		    <el-form-item>
+		      <el-button type="primary" icon="el-icon-search">查询</el-button>
+		    </el-form-item>
+		  </el-form>
 		<el-table :data="tableData" border style="width: 100%">
 			<el-table-column prop="name" label="店铺名称"></el-table-column>
 		    <el-table-column prop="date" label="封面图">

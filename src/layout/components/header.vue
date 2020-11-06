@@ -1,7 +1,7 @@
 <template>
 	<div class="headers">
 		<div class="headerCenter">
-			欢迎，{{userInfo.nickName || userInfo.name || userInfo.phone}}
+			<!-- 欢迎，{{userInfo.nickName || userInfo.name || userInfo.phone}} -->
 			<!-- <span>个人中心</span> -->
 			<span @click="loginOut">【退出登录】</span>
 		</div>
@@ -25,8 +25,6 @@
 		methods:{
 			loginOut(){
 				// 清空所有缓存
-				console.log('11111111111')
-				console.log(sessionStorage)
 				sessionStorage.clear()
 				this.$router.replace('/login')
 			}

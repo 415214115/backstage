@@ -13,7 +13,7 @@ export const product = {
 			name: "index",
 			component: () => import('@/views/product/car/index.vue'),
 			meta: {
-				title: '汽车品牌管理',
+				title: '车辆品牌管理',
 				icon: ''
 			}
 		},
@@ -22,7 +22,7 @@ export const product = {
 			name: "version",
 			component: () => import('@/views/product/version/index.vue'),
 			meta: {
-				title: '汽车型号管理',
+				title: '车辆型号管理',
 				icon: ''
 			}
 		},
@@ -40,7 +40,7 @@ export const product = {
 			name: "colour",
 			component: () => import('@/views/product/colour/index.vue'),
 			meta: {
-				title: '产品颜色管理',
+				title: '车辆颜色管理',
 				icon: ''
 			}
 		}

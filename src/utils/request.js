@@ -31,15 +31,15 @@ const request = {
 	  postType: 0,
 	  headers:{'Content-type': 'application/json; charset=utf-8'}
 	}),
-	// post请求，上传文件
+	// GET请求，上传文件
 	uploading:(url, data = {}) => http({
 	  url:url,
 	  method:'POST',
 	  data,
 	  postType: 0,
-	  headers:{'Content-type': 'multipart/form-data;boundary=' + new Date().getTime()},
-	  // processData: false,
-	  // contentType: false
+	  headers:{'Content-type': 'multipart/form-data;'},
+	  processData: false,
+	  contentType: false
 	}),
 	// get请求，下载文件
 	download:(url, data = {}) => http({

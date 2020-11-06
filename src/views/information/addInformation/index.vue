@@ -21,7 +21,10 @@
 		  </el-form-item>
 		  <el-form-item label="图片">
 		    <div class="imagesList">
-				<el-image class="bannerImage imagesListItem" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" fit="cover"></el-image>
+				<div class="imagesListItem">
+					<el-image class="bannerImage " src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" fit="cover"></el-image>
+					<i class="el-icon-remove-outline imgIcon"></i>
+				</div>
 				<el-upload
 				  class="avatar-uploader"
 				  action="https://jsonplaceholder.typicode.com/posts/"
@@ -52,10 +55,11 @@
 </script>
 
 <style scoped="scoped">
-	.bannerImage{
+	.bannerImage,.imagesListItem{
 		width: 50px;
 		height: 50px;
 		border-radius: 5px;
+		position: relative;
 	}
 	.formDatas>>>.avatar-uploader .el-upload {
 	    border: 1px dashed #d9d9d9;
@@ -91,5 +95,14 @@
 	  .BtnBox{
 		  text-align: center;
 		  margin-top: 20px;
+	  }
+	  .imgIcon{
+	  		  position: absolute;
+	  		  color: #FFFFFF;
+	  		  background: red;
+	  		  border-radius: 100%;
+	  		  top: -5px;
+	  		  right: -5px;
+	  		  cursor: pointer;
 	  }
 </style>

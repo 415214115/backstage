@@ -4,8 +4,20 @@
 			<span>汽车型号管理</span>
 			<el-button style="float: right; padding: 3px 0" type="text" @click="add">新增汽车型号</el-button>
 		</div>
+		<el-form :inline="true"  class="demo-form-inline">
+		  <el-form-item label="型号名称">
+		    <el-input  placeholder="型号名称"></el-input>
+		  </el-form-item>
+		  <el-form-item label="型号品牌">
+		    <el-input  placeholder="型号品牌"></el-input>
+		  </el-form-item>
+		  <el-form-item>
+		    <el-button type="primary" icon="el-icon-search">查询</el-button>
+		  </el-form-item>
+		</el-form>
 		<el-table :data="tableData" border style="width: 100%">
 			<el-table-column prop="name" label="型号名称"></el-table-column>
+			<el-table-column prop="name" label="型号品牌"></el-table-column>
 			<el-table-column label="操作">
 				<template slot-scope="scope">
 					<el-button type="text" @click="editor(scope.row)">编辑</el-button>

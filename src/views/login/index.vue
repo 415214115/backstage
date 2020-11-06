@@ -6,9 +6,9 @@
 				<h3 class="title">KWK色彩车身保护膜后台管理系统登录</h3>
 			</div>
 
-			<el-form-item prop="username">
+			<el-form-item prop="name">
 				<!-- <i class="el-icon-user"></i> -->
-				<el-input ref="username" v-model="loginForm.username" placeholder="Username" name="username" type="text" tabindex="1"
+				<el-input ref="username" v-model="loginForm.name" placeholder="Username" name="username" type="text" tabindex="1"
 				 autocomplete="on" :validate-event="false">
 				 <i slot="prefix" class="el-icon-user"></i>
 				 </el-input>
@@ -22,7 +22,6 @@
 				 </el-input>
 			</el-form-item>
 			<el-button type="primary" class="loginBtn" :loading="isLoding" @click="loginApp('loginForm')">Login</el-button>
-
 		</el-form>
 	</div>
 </template>
@@ -33,25 +32,25 @@
 		data() {
 			const validateUsername = (rule, value, callback) => {
 				if (!value) {
-					callback(new Error('Please enter the correct user name'))
+					callback(new Error('账号不能为空'))
 				} else {
 					callback()
 				}
 			}
 			const validatePassword = (rule, value, callback) => {
-				if (value.length < 6) {
-					callback(new Error('The password can not be less than 6 digits'))
+				if (!value) {
+					callback(new Error('密码不能为空'))
 				} else {
 					callback()
 				}
 			}
 			return {
 				loginForm: {
-					username: 'admin',
-					password: '123456'
+					name: '123',
+					password: '123'
 				},
 				loginRules: {
-					username: [{
+					name: [{
 						required: true,
 						validator: validateUsername
 					}],
@@ -78,8 +77,12 @@
 				this.isLoding = true
 				this.$refs[formName].validate((valid)=>{
 					if (valid) {
-						sessionStorage.setItem('token','test')
-						this.$router.replace('/index')
+						this.$request.postJson(this.$api.login, this.loginForm).then( res => {
+							if(res.code == 'succes'){
+								sessionStorage.setItem('token','yes')
+								this.$router.replace('/index')
+							}
+						})
 					} else{
 						this.$message.error('请仔细核对所填信息')
 					}
@@ -130,7 +133,7 @@
 	}
 	.login-container>>>.el-form-item__content i{
 		color: #545C70;
-		margin-top: 10px;
+		margin-top: 7px;
 		margin-right: 20px;
 		font-size: 20px;
 	}
@@ -141,4 +144,7 @@
 		-webkit-transition-delay: 99999s;
 		-webkit-transition:  color 99999s ease-out,background-color 99999s ease-out;
 	} 
+	.login-container>>>.el-form-item .el-input{
+		width: 400px;
+	}
 </style>

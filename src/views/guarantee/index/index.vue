@@ -4,6 +4,20 @@
 			<span>质保卡管理</span>
 			<el-button style="float: right; padding: 3px 0" type="text" @click="add">新增质保卡</el-button>
 		</div>
+		<el-form :inline="true"  class="demo-form-inline">
+		  <el-form-item label="客户姓名">
+		    <el-input  placeholder="客户姓名"></el-input>
+		  </el-form-item>
+		  <el-form-item label="手机号码">
+		    <el-input  placeholder="手机号码"></el-input>
+		  </el-form-item>
+		  <el-form-item label="车牌号码">
+		    <el-input  placeholder="车牌号码"></el-input>
+		  </el-form-item>
+		  <el-form-item>
+		    <el-button type="primary" icon="el-icon-search">查询</el-button>
+		  </el-form-item>
+		</el-form>
 		<el-table :data="tableData" border style="width: 100%">
 			<el-table-column prop="name" label="客户姓名"></el-table-column>
 			<el-table-column prop="name" label="手机号码"></el-table-column>
@@ -16,7 +30,7 @@
 			<el-table-column prop="name" label="整车价格"></el-table-column>
 			<el-table-column label="操作">
 				<template slot-scope="scope">
-					<el-button type="text" @click="editor(scope.row)">编辑</el-button>
+					<el-button type="text" @click="editor(scope.row)">查看</el-button>
 					<el-button @click="deleteRow(scope.row)" type="text">删除</el-button>
 				</template>
 			</el-table-column>
@@ -108,13 +122,15 @@
 		methods: {
 			add() {
 				// 新增质保卡
-				this.dialogTitle = '新增质保卡'
-				this.dialogVisible = true
+				// this.dialogTitle = '新增质保卡'
+				// this.dialogVisible = true
+				this.$router.push('/guarantee/add')
 			},
 			editor() {
 				// 编辑质保卡
-				this.dialogTitle = '编辑质保卡'
-				this.dialogVisible = true
+				// this.dialogTitle = '编辑质保卡'
+				// this.dialogVisible = true
+				this.$router.push('/guarantee/details')
 			},
 			handleClose() {
 

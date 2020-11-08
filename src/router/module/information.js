@@ -10,7 +10,7 @@ export const information = {
 	children: [
 		{
 			path: "index",
-			name: "index",
+			name: "informationindex",
 			component: () => import('@/views/information/index/index.vue'),
 			meta: {
 				title: '资讯管理',
@@ -19,7 +19,7 @@ export const information = {
 		},
 		{
 			path: "details/:id",
-			name: "details",
+			name: "informationdetails",
 			component: () => import('@/views/information/details/index.vue'),
 			hidden: true,
 			meta: {

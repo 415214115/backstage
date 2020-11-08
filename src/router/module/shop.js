@@ -10,7 +10,7 @@ export const shop = {
 	children: [
 		{
 			path: "index",
-			name: "index",
+			name: "shopindex",
 			component: () => import('@/views/shop/index/index.vue'),
 			meta: {
 				title: '店铺管理',

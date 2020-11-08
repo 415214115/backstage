@@ -16,7 +16,18 @@ const api = {
 	delCarType: '/back/delCarType' ,// 删除汽车品牌
 	addStore: '/back/addStore' ,// 添加店铺
 	getStoreList: '/car/getStoreList' ,// 店铺列表
-	delStore: '/back/delStore' // 删除店铺
+	delStore: '/back/delStore' ,// 删除店铺
+	addCarModelType: '/back/addCarModelType' ,// 新增案例
+	deleteModelType: '/back/deleteModelType' ,// 删除案例
+	addInformation: '/back/addInformation' ,// 新增资讯
+	selectInformations: '/car/selectInformations' ,// 查询资讯列表
+	delInformation: '/back/delInformation' ,// 删除资讯列表
+	addModelPrice: '/back/addModelPrice' ,// 价位配置
+	selectPricelist: '/back/selectPricelist',//价格列表查询
+	delModelPrice: '/back/delModelPrice' ,// 删除价格
+	addOrUpdateUserCarinfo: '/back/addOrUpdateUserCarinfo' ,// 添加质保卡
+	selectUserTypeList: '/back/selectUserTypeList' ,// 获取质保卡列表
+	delUserTypeList: '/back/delUserTypeList' // 删除质保卡
 }
 export default api
 /**

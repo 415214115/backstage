@@ -133,7 +133,7 @@
 	}
 	.login-container>>>.el-form-item__content i{
 		color: #545C70;
-		margin-top: 7px;
+		margin-top: 10px;
 		margin-right: 20px;
 		font-size: 20px;
 	}

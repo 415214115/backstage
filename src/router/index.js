@@ -13,6 +13,7 @@ import {information} from './module/information.js' // 资讯管理
 import {shop} from './module/shop.js' // 店铺管理
 import {product} from './module/product.js' // 产品管理
 import {guarantee} from './module/guarantee.js' // 质保卡管理
+import {price} from './module/price.js' // 价格管理
 export const routes = [{
 		path: '/login',
 		name: 'login',
@@ -34,7 +35,8 @@ export const routes = [{
 			information,
 			shop,
 			product,
-			guarantee
+			guarantee,
+			price
 		]
 	}
 ]

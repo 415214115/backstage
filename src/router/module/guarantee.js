@@ -10,7 +10,7 @@ export const guarantee = {
 	children: [
 		{
 			path: "index",
-			name: "index",
+			name: "guaranteeindex",
 			component: () => import('@/views/guarantee/index/index.vue'),
 			meta: {
 				title: '质保卡管理',

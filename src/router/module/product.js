@@ -10,7 +10,7 @@ export const product = {
 	children: [
 		{
 			path: "index",
-			name: "index",
+			name: "productindex",
 			component: () => import('@/views/product/car/index.vue'),
 			meta: {
 				title: '车辆品牌管理',

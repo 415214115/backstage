@@ -10,7 +10,7 @@ export const caseManage = {
 	children: [
 		{
 			path: "index",
-			name: "index",
+			name: "casemanageindex",
 			component: () => import('@/views/case/index/index.vue'),
 			meta: {
 				title: '案例管理',
@@ -19,7 +19,7 @@ export const caseManage = {
 		},
 		{
 			path: "details/:id",
-			name: "details",
+			name: "casemanagedetails",
 			component: () => import('@/views/case/details/index.vue'),
 			hidden: true,
 			meta: {

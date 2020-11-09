@@ -21,15 +21,13 @@
 			</el-table-column>
 			<el-table-column prop="phone" label="电话"></el-table-column>
 			<el-table-column prop="roadName" label="地址"></el-table-column>
-			<!-- <el-table-column prop="address" label="创建时间"></el-table-column> -->
 			<el-table-column label="操作" width="240">
 				<template slot-scope="scope">
-					<!-- <el-button type="text" @click="editor(scope.row)">编辑</el-button> -->
 					<el-button @click="deleteRow(scope.row.id)" type="text">删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
-		<el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+		<el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="30%">
 			<div class="dialogContent">
 				<el-form label-width="80px" :model="dialogForm">
 					<el-form-item label="店铺名称">
@@ -51,7 +49,7 @@
 				</el-form>
 			</div>
 			<span slot="footer" class="dialog-footer">
-				<el-button @click="handleClose">取 消</el-button>
+				<el-button @click="dialogVisible = false">取 消</el-button>
 				<el-button type="primary" :disabled="submitDisabled" @click="addStores">确 定</el-button>
 			</span>
 		</el-dialog>
@@ -81,26 +79,21 @@
 		mounted() {
 			this.getShopList()
 		},
+		watch: {
+			dialogVisible: function(newData, oldData) {
+				if (!newData) {
+					this.dialogForm.name = ''
+					this.dialogForm.roadName = ''
+					this.dialogForm.phone = ''
+					this.dialogForm.image = ''
+					this.imageUrl = ''
+				}
+			}
+		},
 		methods: {
 			add() {
 				// 新增店铺
-				// this.dialogTitle = '新增店铺'
-				this.dialogForm = {
-					name: '',
-					roadName: '',
-					phone: '',
-					image: ''
-				}
 				this.dialogVisible = true
-			},
-			handleClose() {
-				this.dialogForm = {
-					name: '',
-					roadName: '',
-					phone: '',
-					image: ''
-				}
-				this.dialogVisible = false
 			},
 			upLoadFile(file) {
 				let Files = file.file

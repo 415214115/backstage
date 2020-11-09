@@ -26,7 +26,7 @@ import VueWechatTitle from "vue-wechat-title"
 Vue.use(VueWechatTitle)
 // 全局分页组件
 import pagination from './components/pagination'
-Vue.component('pagina-tion',pagination)
+Vue.component('paginaTion',pagination)
 new Vue({
 	router,
 	store,

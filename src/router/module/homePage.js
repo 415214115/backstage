@@ -17,14 +17,14 @@ export const homePage = {
 				icon: ''
 			}
 		},
-		{
-			path: "case",
-			name: "case",
-			component: () => import('@/views/homePage/case/index.vue'),
-			meta: {
-				title: '首页案例封面',
-				icon: ''
-			}
-		},
+		// {
+		// 	path: "case",
+		// 	name: "case",
+		// 	component: () => import('@/views/homePage/case/index.vue'),
+		// 	meta: {
+		// 		title: '首页案例封面',
+		// 		icon: ''
+		// 	}
+		// },
 	]
 }

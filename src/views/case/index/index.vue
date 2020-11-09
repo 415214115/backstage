@@ -7,31 +7,31 @@
 		<el-form :inline="true" class="demo-form-inline" :model="searchData">
 			<el-form-item label="案例类型">
 				<el-select v-model="searchData.showType" placeholder="请选择">
-					<el-option label="全部" :value="null"></el-option>
+					<el-option label="全部" value=""></el-option>
 					<el-option label="精彩案例" value="1"></el-option>
 					<el-option label="最新案例" value="1"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item label="车辆颜色">
 				<el-select v-model="searchData.colorId" placeholder="请选择">
-					<el-option label="全部" :value="null"></el-option>
+					<el-option label="全部" value=""></el-option>
 					<el-option v-for="item in carColorList" :label="item.name" :value="item.id"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item label="贴膜类型">
 				<el-select v-model="searchData.chemoId" placeholder="请选择">
-					<el-option label="全部" :value="null"></el-option>
+					<el-option label="全部" value=""></el-option>
 					<el-option v-for="item in chemoList" :label="item.name" :value="item.id"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item label="车辆类型">
 				<el-select v-model="searchData.typeId" placeholder="请选择">
-					<el-option label="全部" :value="null"></el-option>
+					<el-option label="全部" value=""></el-option>
 					<el-option v-for="item in carTypes" :label="item.name" :value="item.id"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item>
-				<el-button type="primary" icon="el-icon-search" @click="getCaseData">查询</el-button>
+				<el-button type="primary" icon="el-icon-search" @click="queryFunc">查询</el-button>
 			</el-form-item>
 		</el-form>
 		<el-table :data="tableData" border style="width: 100%">
@@ -46,19 +46,14 @@
 			<el-table-column prop="carColor" label="车辆颜色"></el-table-column>
 			<el-table-column prop="carType" label="车辆型号"></el-table-column>
 			<el-table-column prop="chemoType" label="车膜系列"></el-table-column>
-			<!-- <el-table-column prop="context" label="车辆品牌"></el-table-column> -->
 			<el-table-column prop="showType" label="案例类型"></el-table-column>
-			<!-- <el-table-column prop="address" label="浏览次数"></el-table-column> -->
-			<!-- <el-table-column prop="address" label="创建时间"></el-table-column> -->
 			<el-table-column label="操作" width="100">
 				<template slot-scope="scope">
-					<!-- <el-button @click="deleteBanner(scope.row)" type="text">设为最新案例</el-button>
-					<el-button @click="deleteBanner(scope.row)" type="text">设为精彩案例</el-button> -->
-					<!-- <el-button type="text" @click="editorCase(scope.row)">查看</el-button> -->
 					<el-button @click="deleteRow(scope.row.id)" type="text">删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
+		<paginaTion :totalNum="pageData.total" @paginaClick="paginaClick"></paginaTion>
 	</el-card>
 </template>
 
@@ -68,16 +63,17 @@
 			return {
 				tableData: [],
 				searchData: {
-					showType: null,
-					colorId: null,
-					chemoId: null,
-					typeId: null,
+					showType: '',
+					colorId: '',
+					chemoId: '',
+					typeId: '',
 					pageNum: 1,
 					pageSize: this.$globalData.pageSize
 				},
 				carColorList: '', // 车辆颜色
 				chemoList: '', // 产品系列
 				carTypes: '', // 车辆品牌
+				pageData: ''
 			}
 		},
 		mounted() {
@@ -87,21 +83,22 @@
 			this.getCarTypes()
 		},
 		methods: {
-			editorBanner(row) {
-				// 编辑轮播图
-				this.dialogTitle = row.name
-				this.dialogVisible = true
-			},
 			addCase() {
 				this.$router.push('/casemanage/addcase')
 			},
-			editorCase(row) {
-				this.$router.push(`/casemanage/details/${row.id}`)
+			queryFunc() {
+				this.searchData.pageNum = 1
+				this.getCaseData()
+			},
+			paginaClick(page) {
+				this.searchData.pageNum = page
+				this.getCaseData()
 			},
 			getCaseData() {
 				this.$request.postJson(this.$api.selectAnLi, this.searchData).then(res => {
 					if (res.code == 'succes') {
-						this.tableData = res.data.list
+						this.pageData = res.data
+						this.tableData = this.pageData.list
 					}
 				})
 			},
@@ -117,7 +114,7 @@
 				// 贴膜类型
 				this.$request.postJson(this.$api.selectCheMoList, {
 					pageNum: 1,
-					pageSize: 20
+					pageSize: 20000
 				}).then(res => {
 					if (res.code == 'succes') {
 						this.chemoList = res.data.list
@@ -141,7 +138,9 @@
 					cancelButtonText: '取消',
 					type: 'warning'
 				}).then(() => {
-
+					if (this.searchData.pageNum > 1) {
+						this.searchData.pageNum = Math.ceil((this.pageData.total - 1) / $globalData.pageSize)
+					}
 					this.$request.postJson(this.$api.deleteModelType, {
 						id: id
 					}).then(res => {

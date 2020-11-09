@@ -21,6 +21,7 @@
 				</template>
 			</el-table-column>
 		</el-table>
+		<!-- <paginaTion :totalNum="pageData.total" @paginaClick="paginaClick"></paginaTion> -->
 		<el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="30%" :close="handleClose">
 			<div class="dialogContent">
 				<el-form label-width="80px" :model="dialogForm">
@@ -48,8 +49,11 @@
 				dialogVisible: false,
 				dialogTitle: '新增品牌',
 				queryData: {
-					typeId: '-1'
-				}
+					typeId: '-1',
+					pageNum: 1,
+					pageSize: $globalData.pageSize
+				},
+				// pageData: ''
 			}
 		},
 		mounted() {

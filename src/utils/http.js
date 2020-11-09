@@ -11,7 +11,7 @@ import {
 // create an axios instance
 export const http = axios.create({
 	// baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-	baseURL: 'https://chenzhouhuang.utools.club', // url = base url + request url 
+	baseURL: 'https://chenzhouhuan.utools.club', // url = base url + request url 
 	// withCredentials: true,
 	headers: {
 		'X-Requested-With': 'XMLHttpRequest',

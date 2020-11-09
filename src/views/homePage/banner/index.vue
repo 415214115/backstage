@@ -19,7 +19,7 @@
 				</template>
 			</el-table-column>
 		</el-table>
-		<el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="30%" :close="handleClose">
+		<el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="30%">
 			<div class="dialogContent">
 				<el-form label-width="80px" :model="dialogForm">
 					<!-- <el-form-item label="图片描述">
@@ -35,7 +35,7 @@
 				</el-form>
 			</div>
 			<span slot="footer" class="dialog-footer">
-				<el-button @click="handleClose">取 消</el-button>
+				<el-button @click="dialogVisible = false">取 消</el-button>
 				<el-button type="primary" :disabled="submitDisabled" @click="addBannerSubmit">确 定</el-button>
 			</span>
 		</el-dialog>
@@ -59,6 +59,12 @@
 		mounted() {
 			this.getBannerData()
 		},
+		watch: {
+			dialogVisible: function(newData, oldData) {
+				this.dialogForm.imgs = ''
+				this.imageUrl = ''
+			}
+		},
 		methods: {
 			addBanner() {
 				// 新增轮播图
@@ -70,16 +76,14 @@
 			// 	this.dialogTitle = '编辑轮播图'
 			// 	this.dialogVisible = true
 			// },
-			handleClose() {
-				this.dialogForm.imgs = ''
-				this.imageUrl = ''
-				this.dialogVisible = false
-			},
+			// handleClose() {
+
+			// 	this.dialogVisible = false
+			// },
 			getBannerData() {
 				this.$request.get(this.$api.getLunBoTu).then(res => {
 					if (res.code == 'succes') {
 						this.tableData = res.data
-						console.log(res)
 					}
 				})
 			},

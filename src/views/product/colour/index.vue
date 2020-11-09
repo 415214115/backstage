@@ -4,19 +4,10 @@
 			<span>车辆颜色管理</span>
 			<el-button style="float: right; padding: 3px 0" type="text" @click="add">新增车辆颜色</el-button>
 		</div>
-		<!-- <el-form :inline="true"  class="demo-form-inline">
-		  <el-form-item label="颜色名称">
-		    <el-input  placeholder="颜色名称"></el-input>
-		  </el-form-item>
-		  <el-form-item>
-		    <el-button type="primary" icon="el-icon-search">查询</el-button>
-		  </el-form-item>
-		</el-form> -->
 		<el-table :data="tableData" border style="width: 100%">
 			<el-table-column prop="name" label="颜色名称"></el-table-column>
 			<el-table-column label="操作" width="240">
 				<template slot-scope="scope">
-					<!-- <el-button type="text" @click="editor(scope.row)">编辑</el-button> -->
 					<el-button @click="deleteRow(scope.row.id)" type="text">删除</el-button>
 				</template>
 			</el-table-column>
@@ -58,11 +49,6 @@
 				this.dialogTitle = '新增颜色'
 				this.dialogVisible = true
 			},
-			// editor() {
-			// 	// 编辑颜色
-			// 	this.dialogTitle = '编辑颜色'
-			// 	this.dialogVisible = true
-			// },
 			handleClose() {
 				this.dialogForm.name = ''
 			},

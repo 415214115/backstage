@@ -9,7 +9,7 @@
 				<el-select v-model="searchData.showType" placeholder="请选择">
 					<el-option label="全部" value=""></el-option>
 					<el-option label="精彩案例" value="1"></el-option>
-					<el-option label="最新案例" value="1"></el-option>
+					<el-option label="最新案例" value="2"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item label="车辆颜色">
@@ -44,9 +44,13 @@
 			<el-table-column prop="context" label="简介"></el-table-column>
 			<el-table-column prop="showText" label="列表描述"></el-table-column>
 			<el-table-column prop="carColor" label="车辆颜色"></el-table-column>
-			<el-table-column prop="carType" label="车辆型号"></el-table-column>
-			<el-table-column prop="chemoType" label="车膜系列"></el-table-column>
-			<el-table-column prop="showType" label="案例类型"></el-table-column>
+			<el-table-column prop="carTypeName" label="车辆型号"></el-table-column>
+			<el-table-column prop="chemoTypeName" label="车膜系列"></el-table-column>
+			<el-table-column prop="showType" label="案例类型">
+				<template slot-scope="scope">
+					{{ scope.row.showType == 1 ? '精彩案例' : '最新案例' }}
+				</template>
+			</el-table-column>
 			<el-table-column label="操作" width="100">
 				<template slot-scope="scope">
 					<el-button @click="deleteRow(scope.row.id)" type="text">删除</el-button>

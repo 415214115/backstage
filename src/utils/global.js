@@ -1,6 +1,6 @@
 const globalData = {
 	defaultImg: require('@/assets/image/defaultImg.png'),
-	pageSize: 2
+	pageSize: 20
 }
 window.$globalData = globalData
 export default globalData

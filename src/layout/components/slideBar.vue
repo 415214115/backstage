@@ -1,7 +1,7 @@
 <template>
 	<div class="slideBar">
 		<div v-if="settings.logo.isShow" class="logoBox">
-			<el-image :src="settings.logo.image" class="logoImg"></el-image>
+			<img :src="settings.logo.image" class="logoImg" />
 			<div class="leftTitles">{{settings.logo.title}}</div>
 		</div>
 		<el-scrollbar wrap-class="scrollbar-wrapper" :class="settings.logo.isShow?'islogos':'noislogos'">
@@ -98,9 +98,9 @@
 	font-size: 15px;
 }
 .logoImg{
-	width: 30px;
-	height: 30px;
-	margin-top: 10px;
+	/* width: 30px; */
+	height: 20px;
+	margin-top: 15px;
 }
 .slideBar>>>.el-scrollbar__wrap{
 	overflow: auto;

@@ -10,8 +10,10 @@ import {
 
 // create an axios instance
 export const http = axios.create({
+	// https://kwkxcx.com
 	// baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-	baseURL: 'https://chenzhouhuan.utools.club', // url = base url + request url 
+	// baseURL: 'https://chenzhouhuan.utools.club', // url = base url + request url 
+	baseURL: 'http://kwkxcx.com:8095', // url = base url + request url
 	// withCredentials: true,
 	headers: {
 		'X-Requested-With': 'XMLHttpRequest',

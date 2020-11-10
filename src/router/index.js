@@ -46,7 +46,7 @@ export const routes = [{
 // routes = routes.concat(classifyRouter)
 export const editRouter = reconsitution(routes)
 const router = new VueRouter({
-	mode: 'history',
+	// mode: 'history',
 	routes
 })
 

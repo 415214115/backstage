@@ -11,7 +11,11 @@
 					<el-image class="bannerImage" :src="scope.row.cover" fit="cover"></el-image>
 				  </template>
 			</el-table-column>
-			<el-table-column prop="context" label="内容"></el-table-column>
+			<el-table-column label="内容">
+				<template slot-scope="scope">
+					<div v-html="scope.row.context"></div>
+				  </template>
+			</el-table-column>
 			<el-table-column label="操作" width="100">
 				<template slot-scope="scope">
 					<el-button @click="deleteBanner(scope.row.id)" type="text">删除</el-button>

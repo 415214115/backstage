@@ -8,8 +8,8 @@
 				<el-input v-model="postData.title"></el-input>
 			</el-form-item>
 			<el-form-item label="内容">
-				<vue-ueditor-wrap v-model="postData.context" :config="myConfig"></vue-ueditor-wrap>
-				<!-- <el-input type="textarea" placeholder="请输入内容" v-model="postData.context"> -->
+				<!-- <vue-ueditor-wrap v-model="postData.context" :config="myConfig"></vue-ueditor-wrap> -->
+				<el-input type="textarea" placeholder="请输入内容" v-model="postData.context">
 				</el-input>
 			</el-form-item>
 			<el-form-item label="封面图">

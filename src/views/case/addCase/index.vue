@@ -5,32 +5,34 @@
 		</div>
 		<el-form class="formDatas" label-width="80px" :model="postData">
 			<el-form-item label="标题">
-				<el-input v-model="postData.title"></el-input>
+				<el-input v-model="postData.title" class="inputs"></el-input>
 			</el-form-item>
 			<el-form-item label="简介">
-				<el-input v-model="postData.context"></el-input>
+				<el-input type="textarea" placeholder="请输入内容" v-model="postData.context"></el-input>
+				<!-- <el-input v-model="postData.context"></el-input> -->
 			</el-form-item>
 			<el-form-item label="图片介绍">
-				<el-input v-model="postData.showText"></el-input>
+				<el-input type="textarea" placeholder="请输入内容" v-model="postData.showText"></el-input>
+				<!-- <el-input v-model="postData.showText"></el-input> -->
 			</el-form-item>
 			<el-form-item label="案例类型">
-				<el-select v-model="postData.showType" placeholder="请选择">
+				<el-select v-model="postData.showType" class="inputs" placeholder="请选择">
 					<el-option label="精彩案例" value="1"></el-option>
 					<el-option label="最新案例" value="2"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item label="车辆颜色">
-				<el-select v-model="postData.carColor" placeholder="请选择">
-					<el-option v-for="item in carColorList" :label="item.name" :value="item.id"></el-option>
+				<el-select v-model="postData.carColor" class="inputs" placeholder="请选择">
+					<el-option v-for="item in carColorList" :label="item.name" :value="item.name"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item label="贴膜类型">
-				<el-select v-model="postData.chemoType" placeholder="请选择">
+				<el-select v-model="postData.chemoType" class="inputs" placeholder="请选择">
 					<el-option v-for="item in chemoList" :label="item.name" :value="item.id"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item label="车辆类型">
-				<el-select v-model="postData.carType" placeholder="请选择">
+				<el-select v-model="postData.carType" class="inputs" placeholder="请选择">
 					<el-option v-for="item in carTypes" :label="item.name" :value="item.id"></el-option>
 				</el-select>
 			</el-form-item>
@@ -218,5 +220,11 @@
 		top: -5px;
 		right: -5px;
 		cursor: pointer;
+	}
+	.formDatas>>>.el-textarea__inner{
+		height: 150px;
+	}
+	.formDatas>>>.inputs,.formDatas>>>.el-input{
+		width: 100% !important;
 	}
 </style>

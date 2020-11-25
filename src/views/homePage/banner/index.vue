@@ -96,7 +96,7 @@
 				}
 				let formData = new FormData()
 				formData.append('fileList', Files)
-				this.$request.uploading(this.$api.upLoadImg, formData).then(res => {
+				this.$request.uploading('/upload/one/upLoadImg', formData).then(res => {
 					if (res.code == 'succes') {
 						this.dialogForm.imgs = res.data
 						this.submitDisabled = false

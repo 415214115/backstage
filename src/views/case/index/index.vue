@@ -42,7 +42,7 @@
 				</template>
 			</el-table-column>
 			<el-table-column prop="context" label="简介"></el-table-column>
-			<el-table-column prop="showText" label="列表描述"></el-table-column>
+			<el-table-column prop="showText" label="图片介绍"></el-table-column>
 			<el-table-column prop="carColor" label="车辆颜色"></el-table-column>
 			<el-table-column prop="carTypeName" label="车辆型号"></el-table-column>
 			<el-table-column prop="chemoTypeName" label="车膜系列"></el-table-column>

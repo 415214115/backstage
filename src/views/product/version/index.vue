@@ -7,24 +7,25 @@
 		<el-form :inline="true" :model="queryData" class="demo-form-inline">
 			<el-form-item label="汽车品牌">
 				<el-select v-model="queryData.typeId" placeholder="汽车品牌">
-					<el-option label="全部" value="0"></el-option>
+					<el-option label="全部" value=""></el-option>
 					<el-option v-for="item in carTypes" :label="item.name" :value="item.id"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item>
-				<el-button type="primary" icon="el-icon-search" @click="getVersionList">查询</el-button>
+				<el-button type="primary" icon="el-icon-search" @click="queryCar">查询</el-button>
 			</el-form-item>
 		</el-form>
-		<el-table :data="tableData" border style="width: 100%">
-			<el-table-column prop="name" label="型号名称"></el-table-column>
-			<el-table-column prop="name" label="型号品牌"></el-table-column>
+		<el-table :data="pagedata.list" border style="width: 100%">
+			<el-table-column prop="cname" label="型号名称"></el-table-column>
+			<el-table-column prop="pname" label="型号品牌"></el-table-column>
 			<el-table-column label="操作" width="240">
 				<template slot-scope="scope">
-					<el-button @click="deleteRow(scope.row.id)" type="text">删除</el-button>
+					<el-button @click="deleteRow(scope.row.cid)" type="text">删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
-		<el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+		<paginaTion :totalNum="pagedata.total" @paginaClick="paginaClick"></paginaTion>
+		<el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="30%">
 			<div class="dialogContent">
 				<el-form label-width="80px" :model="dialogForm">
 					<el-form-item label="汽车品牌">
@@ -58,21 +59,48 @@
 				dialogTitle: '新增型号',
 				carTypes: '',
 				queryData: {
-					typeId: '0',
+					typeId: '',
 					pageNum: 1,
-					pageSize: $globalData.pageSize
-				}
+					pageSize: $globalData.pageSize,
+				},
+				pagedata: ''
 			}
 		},
 		mounted() {
 			this.getCarTypes()
-			this.getVersionList()
+			// this.getVersionList()
+			this.getPageData()
 		},
 		methods: {
+			paginaClick(val){
+				this.queryData.pageNum = val
+				console.log(val)
+				this.getPageData()
+			},
+			queryCar(){
+				this.queryData.pageNum = 1
+				this.getPageData()
+			},
 			add() {
 				// 新增型号
 				this.dialogVisible = true
 			},
+			getPageData(){
+				this.$request.postJson('/back/selectCarTypeList', this.queryData).then(res=>{
+					if(res.code == 'succes'){
+						this.pagedata = res.data
+					}
+				})
+			},
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			getCarTypes() {
 				// 获取汽车品牌
 				this.$request.postJson(this.$api.selectCarType, {
@@ -85,19 +113,19 @@
 					}
 				})
 			},
-			getVersionList() {
-				// 获取汽车型号
-				this.$request.postJson(this.$api.selectCarType, this.queryData).then(res => {
-					if (res.code == 'succes') {
-						this.tableData = res.data
-					}
-				})
-			},
+			// getVersionList() {
+			// 	// 获取汽车型号
+			// 	this.$request.postJson(this.$api.selectCarType, this.queryData).then(res => {
+			// 		if (res.code == 'succes') {
+			// 			this.tableData = res.data
+			// 		}
+			// 	})
+			// },
 			addCarTypes() {
 				this.$request.postJson(this.$api.addCarType, this.dialogForm).then(res => {
 					if (res.code == 'succes') {
 						this.$message.success('添加成功')
-						this.getVersionList()
+						this.getPageData()
 						this.dialogVisible = false
 					}
 				})
@@ -113,7 +141,10 @@
 					}).then(res => {
 						if (res.code == 'succes') {
 							this.$message.success('删除成功')
-							this.getVersionList()
+							if(this.queryData.pageNum > 1){
+								this.queryData.pageNum = Math.ceil((this.pagedata.total - 1) / $globalData.pageSize)
+							}
+							this.getPageData()
 						}
 					})
 				})

@@ -46,8 +46,8 @@
 			}
 			return {
 				loginForm: {
-					name: '123',
-					password: '123'
+					name: '',
+					password: ''
 				},
 				loginRules: {
 					name: [{

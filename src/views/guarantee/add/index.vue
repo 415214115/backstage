@@ -49,12 +49,12 @@
 		        <el-option v-for="item in shopList" :label="item.name" :value="item.id"></el-option>
 		      </el-select>
 		  </el-form-item>
-		  <el-form-item label="是否贴膜">
+		 <!-- <el-form-item label="是否贴膜">
 		    <el-select v-model="postData.makeStatus" placeholder="请选择">
 		        <el-option label="已做" value="0"></el-option>
 		  		<el-option label="未做" value="1"></el-option>
 		      </el-select>
-		  </el-form-item>
+		  </el-form-item> -->
 		  <el-form-item label="整车价格">
 		    <el-input v-model="postData.priceId"></el-input>
 		  </el-form-item>

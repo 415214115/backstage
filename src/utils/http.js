@@ -12,7 +12,7 @@ import {
 export const http = axios.create({
 	// https://kwkxcx.com
 	// baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-	// baseURL: 'https://chenzhouhuan.utools.club', // url = base url + request url 
+	// baseURL: 'https://chenzhouhuang.utools.club', // url = base url + request url 
 	baseURL: 'https://kwkxcx.com', // url = base url + request url
 	// withCredentials: true,
 	headers: {

@@ -8,9 +8,9 @@
 				<el-input v-model="postData.title"></el-input>
 			</el-form-item>
 			<el-form-item label="内容">
-				<!-- <vue-ueditor-wrap v-model="postData.context" :config="myConfig"></vue-ueditor-wrap> -->
-				<el-input type="textarea" placeholder="请输入内容" v-model="postData.context">
-				</el-input>
+				<vue-ueditor-wrap v-model="postData.context" :config="myConfig"></vue-ueditor-wrap>
+				<!-- <el-input type="textarea" placeholder="请输入内容" v-model="postData.context">
+				</el-input> -->
 			</el-form-item>
 			<el-form-item label="封面图">
 				<el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
@@ -50,7 +50,7 @@
 					// 初始容器宽度
 					initialFrameWidth: '100%',
 					// 上传文件接口（这个地址是我为了方便各位体验文件上传功能搭建的临时接口，请勿在生产环境使用！！！）
-					serverUrl: 'http://kwkxcx.com:8095/upload/one/upLoadImg',
+					serverUrl: 'https://chenzhouhuang.utools.club/ueditorConfig',
 					// UEditor 资源文件的存放路径，如果你使用的是 vue-cli 生成的项目，通常不需要设置该选项，vue-ueditor-wrap 会自动处理常见的情况，如果需要特殊配置，参考下方的常见问题2
 					UEDITOR_HOME_URL: '/UEditor/'
 				}
@@ -140,5 +140,8 @@
 		top: -5px;
 		right: -5px;
 		cursor: pointer;
+	}
+	.formDatas>>>.el-form-item__content{
+		line-height: 20px !important;
 	}
 </style>

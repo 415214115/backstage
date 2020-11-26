@@ -5,21 +5,21 @@
 		</div>
 		<el-form class="formDatas" label-width="80px" :model="postData">
 		  <el-form-item label="客户姓名">
-		    <el-input v-model="postData.userName"></el-input>
+		    <el-input v-model="postData.userName" class="INPUT"></el-input>
 		  </el-form-item>
 		  <el-form-item label="手机号码">
-		    <el-input v-model="postData.phone"></el-input>
+		    <el-input v-model="postData.phone" class="INPUT"></el-input>
 		  </el-form-item>
 		  <el-form-item label="受保车型">
-		       <el-select v-model="postData.carId" placeholder="请选择">
+		       <el-select v-model="postData.carId" class="INPUT" placeholder="请选择">
 		           <el-option v-for="item in carTypes" :label="item.name" :value="item.id"></el-option>
 		         </el-select>
 		  </el-form-item>
 		  <el-form-item label="车牌号码">
-		    <el-input v-model="postData.carNum"></el-input>
+		    <el-input v-model="postData.carNum" class="INPUT"></el-input>
 		  </el-form-item>
 		 <el-form-item label="施工膜类">
-		    <el-select v-model="postData.chemoId" placeholder="请选择">
+		    <el-select v-model="postData.chemoId" class="INPUT" placeholder="请选择">
 		        <el-option v-for="item in chemoList" :label="item.name" :value="item.id"></el-option>
 		    	<!-- <el-option label="b" value="2"></el-option> -->
 		      </el-select>
@@ -27,7 +27,7 @@
 		  <el-form-item label="质保日期">
 		    <el-date-picker
 		          v-model="postData.updateTime"
-		          type="date"
+		          type="date" class="INPUT"
 		          placeholder="选择日期"
 				  format="yyyy 年 MM 月 dd 日"
 				  value-format="yyyy-MM-dd"
@@ -37,7 +37,7 @@
 		  <el-form-item label="交车日期">
 		    <el-date-picker
 		          v-model="postData.createTime"
-		          type="date"
+		          type="date" class="INPUT"
 		          placeholder="选择日期"
 		    	  format="yyyy 年 MM 月 dd 日"
 		    	  value-format="yyyy-MM-dd"
@@ -45,7 +45,7 @@
 		        </el-date-picker>
 		  </el-form-item>
 		  <el-form-item label="施工店铺">
-		    <el-select v-model="postData.storeId" placeholder="请选择">
+		    <el-select v-model="postData.storeId" class="INPUT" placeholder="请选择">
 		        <el-option v-for="item in shopList" :label="item.name" :value="item.id"></el-option>
 		      </el-select>
 		  </el-form-item>
@@ -56,7 +56,10 @@
 		      </el-select>
 		  </el-form-item> -->
 		  <el-form-item label="整车价格">
-		    <el-input v-model="postData.priceId"></el-input>
+		    <el-input v-model="postData.priceId" class="INPUT"></el-input>
+		  </el-form-item>
+		  <el-form-item label="备注">
+		    <el-input v-model="postData.remark" class="INPUT"></el-input>
 		  </el-form-item>
 		  <el-form-item label="车辆图片">
 		    <div class="imagesList">
@@ -98,6 +101,7 @@
 					makeStatus: '0', // 是否做摸（0 已做 1 未做）
 					storeId: '', // 施工店铺
 					chemoId: '', // 施工膜类
+					remark: '', // 添加备注
 					imgs: []
 				},
 				imgsMap: new Map(),
@@ -222,5 +226,8 @@
 		  top: -5px;
 		  right: -5px;
 		  cursor: pointer;
+	  }
+		.formDatas>>>.INPUT,.formDatas>>>.el-input{
+		  width: 100%;
 	  }
 </style>

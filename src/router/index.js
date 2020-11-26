@@ -14,6 +14,7 @@ import {shop} from './module/shop.js' // 店铺管理
 import {product} from './module/product.js' // 产品管理
 import {guarantee} from './module/guarantee.js' // 质保卡管理
 import {price} from './module/price.js' // 价格管理
+import {consult} from './module/consult.js' // 咨询管理
 export const routes = [{
 		path: '/login',
 		name: 'login',
@@ -36,7 +37,8 @@ export const routes = [{
 			shop,
 			product,
 			guarantee,
-			price
+			price,
+			consult
 		]
 	}
 ]

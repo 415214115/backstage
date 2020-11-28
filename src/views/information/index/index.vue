@@ -18,6 +18,7 @@
 			</el-table-column> -->
 			<el-table-column label="操作" width="100">
 				<template slot-scope="scope">
+					<el-button @click="lookDetails(scope.row.id)" type="text">查看</el-button>
 					<el-button @click="deleteBanner(scope.row.id)" type="text">删除</el-button>
 				  </template>
 			</el-table-column>
@@ -57,6 +58,10 @@
 						this.tableData = this.pageData.list
 					}
 				})
+			},
+			lookDetails(id){
+				// 查看详情
+				this.$router.push(`/information/details/${id}`)
 			},
 			deleteBanner(id){
 				this.$confirm('此操作将永久删除该资讯, 是否继续?', '提示', {

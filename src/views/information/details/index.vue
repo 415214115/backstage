@@ -1,115 +1,141 @@
 <template>
 	<el-card>
 		<div slot="header" class="clearfix">
-		    <span>资讯详情</span>
-			<el-button style="float: right; padding: 3px 0" type="text">编辑</el-button>
+			<span>资讯详情</span>
 		</div>
-		<el-form class="formDatas" label-width="80px" :model="datas">
-		  <el-form-item label="标题">
-		    <el-input v-model="datas"></el-input>
-		  </el-form-item>
-		  <el-form-item label="简介">
-		    <el-input v-model="datas"></el-input>
-		  </el-form-item>
-		  <el-form-item label="封面图">
-			  <div class="imagesList">
-				<el-image class="bannerImage imagesListItem" src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" fit="cover"></el-image>
-				<el-upload
-				  class="imagesListItem"
-				  action="https://jsonplaceholder.typicode.com/posts/"
-				  :show-file-list="false">
-				  <el-button type="text">修改</el-button>
-				  <!-- <img v-if="imageUrl" :src="imageUrl" class="avatar"> -->
-				  <!-- <i class="el-icon-plus avatar-uploader-icon"></i> -->
-				</el-upload>
-			</div>
-		  </el-form-item>
-		  <el-form-item label="图片">
-		    <div class="imagesList">
-				<div class="imagesListItem">
-					<el-image class="bannerImage " src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" fit="cover"></el-image>
-					<i class="el-icon-remove-outline imgIcon"></i>
-				</div>
-				<el-upload
-				  class="avatar-uploader"
-				  action="https://jsonplaceholder.typicode.com/posts/"
-				  :show-file-list="false">
-				  <!-- <img v-if="imageUrl" :src="imageUrl" class="avatar"> -->
-				  <i class="el-icon-plus avatar-uploader-icon"></i>
-				</el-upload>
-			</div>
-		  </el-form-item>
+		<el-form class="formDatas" label-width="80px" :model="pageData">
+			<el-form-item label="标题">
+				<el-input v-model="pageData.title" disabled style="width: 100%;"></el-input>
+			</el-form-item>
+			<el-form-item label="内容">
+				<vue-ueditor-wrap v-model="pageData.context" :config="myConfig"></vue-ueditor-wrap>
+				<!-- <el-input type="textarea" placeholder="请输入内容" v-model="postData.context"> -->
+				</el-input>
+			</el-form-item>
+			<el-form-item label="封面图">
+				<img v-if="pageData.cover" :src="pageData.cover" class="avatar">
+				<!-- <el-upload class="avatar-uploader" disabled action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
+				 >
+					<img v-if="postData.cover" :src="postData.cover" class="avatar">
+					<i v-else class="el-icon-plus avatar-uploader-icon"></i>
+				</el-upload> -->
+			</el-form-item>
 		</el-form>
 		<div class="BtnBox">
-		    <el-button>返回上一页</el-button>
-			<el-button type="primary">确定</el-button>
+			<el-button @click="$router.back()">返回上一页</el-button>
+			<!-- <el-button type="primary" @click="add">确定</el-button> -->
 		</div>
 	</el-card>
 </template>
 
 <script>
-	export default{
-		data(){
-			return{
-				datas:{}
+	import VueUeditorWrap from 'vue-ueditor-wrap'
+	export default {
+		components: {
+			VueUeditorWrap
+		},
+		data() {
+			return {
+				pageData: {},
+				
+				myConfig: {
+					//禁用编辑器
+					readonly: true,
+					// 编辑器不自动被内容撑高
+					autoHeightEnabled: false,
+					// 初始容器高度
+					initialFrameHeight: 420,
+					// 初始容器宽度
+					initialFrameWidth: '100%',
+					// 上传文件接口（这个地址是我为了方便各位体验文件上传功能搭建的临时接口，请勿在生产环境使用！！！）
+					// serverUrl: 'https://chenzhouhuang.utools.club/ueditorConfig',
+					serverUrl: 'https://kwkxcx.com/ueditorConfig',
+					// serverUrl: 'http://47.114.59.188/ueditorConfig',
+					// UEditor 资源文件的存放路径，如果你使用的是 vue-cli 生成的项目，通常不需要设置该选项，vue-ueditor-wrap 会自动处理常见的情况，如果需要特殊配置，参考下方的常见问题2
+					UEDITOR_HOME_URL: '/UEditor/'
+				}
 			}
 		},
-		methods:{
-			
+		mounted() {
+			console.log(this.$route.params.id)
+			this.getPageData(this.$route.params.id)
+		},
+		methods: {
+			getPageData(id){
+				this.$request.postJson('/car/selectInformationById',{id:id}).then(res=>{
+					if (res.code == 'succes') {
+						this.pageData = res.data
+					}
+				})
+			}
 		}
 	}
 </script>
 
 <style scoped="scoped">
-	.bannerImage,.imagesListItem{
+	.bannerImage,
+	.imagesListItem {
 		width: 50px;
 		height: 50px;
 		border-radius: 5px;
 		position: relative;
 	}
+
 	.formDatas>>>.avatar-uploader .el-upload {
-	    border: 1px dashed #d9d9d9;
-	    border-radius: 6px;
-	    cursor: pointer;
-	    position: relative;
-	    overflow: hidden;
-	  }
-	  .avatar-uploader .el-upload:hover {
-	    border-color: #409EFF;
-	  }
-	  .avatar-uploader-icon {
-	    font-size: 28px;
-	    color: #8c939d;
-	    width: 50px;
-	    height: 50px;
-	    line-height: 50px;
-	    text-align: center;
-	  }
-	  .avatar {
-	    width: 50px;
-	    height: 50px;
-	    display: block;
-	  }
-	  .imagesList{
-		  display: flex;
-		  justify-content: start;
-		  flex-wrap: wrap;
-		  align-items: center;
-	  }
-	  .imagesListItem{
-		  margin-right: 20px;
-	  }
-	  .BtnBox{
-		  text-align: center;
-		  margin-top: 20px;
-	  }
-	  .imgIcon{
-	  		  position: absolute;
-	  		  color: #FFFFFF;
-	  		  background: red;
-	  		  border-radius: 100%;
-	  		  top: -5px;
-	  		  right: -5px;
-	  		  cursor: pointer;
-	  }
+		border: 1px dashed #d9d9d9;
+		border-radius: 6px;
+		cursor: pointer;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.avatar-uploader .el-upload:hover {
+		border-color: #409EFF;
+	}
+
+	.avatar-uploader-icon {
+		font-size: 28px;
+		color: #8c939d;
+		width: 50px;
+		height: 50px;
+		line-height: 50px;
+		text-align: center;
+	}
+
+	.avatar {
+		width: 50px;
+		height: 50px;
+		display: block;
+	}
+
+	.imagesList {
+		display: flex;
+		justify-content: start;
+		flex-wrap: wrap;
+	}
+
+	.imagesListItem {
+		margin-right: 20px;
+	}
+
+	.BtnBox {
+		text-align: center;
+		margin-top: 20px;
+	}
+
+	.imgIcon {
+		position: absolute;
+		color: #FFFFFF;
+		background: red;
+		border-radius: 100%;
+		top: -5px;
+		right: -5px;
+		cursor: pointer;
+	}
+	.formDatas>>>.el-form-item__content{
+		line-height: 20px !important;
+	}
+	.formDatas>>>.el-textarea__inner{
+		height: 300px;
+	}
 </style>

@@ -11,9 +11,10 @@
 		    <el-input v-model="postData.phone" class="INPUT"></el-input>
 		  </el-form-item>
 		  <el-form-item label="受保车型">
-		       <el-select v-model="postData.carId" class="INPUT" placeholder="请选择">
+			  <el-input v-model="postData.carName" class="INPUT"></el-input>
+		      <!-- <el-select v-model="postData.carId" class="INPUT" placeholder="请选择">
 		           <el-option v-for="item in carTypes" :label="item.name" :value="item.id"></el-option>
-		         </el-select>
+		         </el-select> -->
 		  </el-form-item>
 		  <el-form-item label="车牌号码">
 		    <el-input v-model="postData.carNum" class="INPUT"></el-input>
@@ -95,7 +96,7 @@
 					phone: '', // 用户电话
 					carNum: '', // 车牌号
 					priceId: '', // 所做的价格
-					carId: '', // 受保车型
+					carName: '', // 受保车型
 					createTime: '', // 交车时间
 					updateTime: '', // 有效时间
 					makeStatus: '0', // 是否做摸（0 已做 1 未做）

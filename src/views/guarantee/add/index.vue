@@ -26,24 +26,26 @@
 		      </el-select>
 		  </el-form-item>
 		  <el-form-item label="质保日期">
-		    <el-date-picker
+			  <el-input v-model="postData.updateTime" class="INPUT"></el-input>
+		    <!-- <el-date-picker
 		          v-model="postData.updateTime"
 		          type="date" class="INPUT"
 		          placeholder="选择日期"
 				  format="yyyy 年 MM 月 dd 日"
 				  value-format="yyyy-MM-dd"
 				  >
-		        </el-date-picker>
+		        </el-date-picker> -->
 		  </el-form-item>
 		  <el-form-item label="交车日期">
-		    <el-date-picker
+			  <el-input v-model="postData.createTime" class="INPUT"></el-input>
+		   <!-- <el-date-picker
 		          v-model="postData.createTime"
 		          type="date" class="INPUT"
 		          placeholder="选择日期"
 		    	  format="yyyy 年 MM 月 dd 日"
 		    	  value-format="yyyy-MM-dd"
 		    	  >
-		        </el-date-picker>
+		        </el-date-picker> -->
 		  </el-form-item>
 		  <el-form-item label="施工店铺">
 		    <el-select v-model="postData.storeId" class="INPUT" placeholder="请选择">
